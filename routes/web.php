@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PengarangController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,10 +44,6 @@ Route::get('/nilai', function () {
 Route::get('/daftarnilai', function () {
     return view('daftar_nilai');
 
-Route::resource('/pengarang', 'PengarangController');
-Route::resource('/penerbit', 'PenerbitController');
-Route::resource('/kategori', 'KategoriController');
-Route::resource('/buku', 'BukuController');
-Route::resource('/anggota', 'AnggotaController');
-Route::resource('/peminjaman', 'PeminjamanController');
+Route::resource('/pengarang', PengarangController::class);
+
 });
