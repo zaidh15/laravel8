@@ -28,6 +28,7 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ url('/pengarang') }}">Pengarang</a>
                     <a class="dropdown-item" href="{{ url('/penerbit') }}">Penerbit</a>
+                    <a class="dropdown-item" href="{{ url('/buku') }}">Buku</a>
                     <a class="dropdown-item" href="#">Something else here</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Separated link</a>

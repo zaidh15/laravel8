@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengarangController;
 use App\Http\Controllers\PenerbitController;
+use App\Http\Controllers\BukuController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,5 +56,10 @@ Route::get(
 Route::get(
     '/penerbit',
     [PenerbitController::class, 'index']
+);
+
+Route::get(
+    '/buku',
+    [BukuController::class, 'index']
 );
 });
