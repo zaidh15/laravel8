@@ -17,7 +17,7 @@ class PengarangController extends Controller
     public function index()
     {
         $ar_pengarang = DB::table('pengarang')->get();
-        return view('pengarang.index',compact('ar_pengarang'));
+        return view('pengarang.index', compact('ar_pengarang'));
     }
 
     /**

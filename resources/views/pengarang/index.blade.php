@@ -27,8 +27,9 @@
                 @csrf
                 @method('delete')
                 <a class="btn btn-info" href="{{ route('pengarang.show', $p->id) }}">Detail</a>
+
                 <a class="btn btn-success" href="{{ route('pengarang.edit', $p->id) }}">Edit</a>
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Anda Yakin Data dihapus?')">Hapus</button>
+                <button class="btn btn-danger" onclick="return confirm('Anda Yakin Data dihapus?')">Hapus</button>
             </form>
             </td>
         </tr>
