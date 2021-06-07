@@ -39,6 +39,17 @@ class PengarangController extends Controller
      */
     public function store(Request $request)
     {
+        //input upload foto
+        if (!empty($request->foto)) {
+            $request->validate(
+                ['foto'=>'image|mimes:jpg,jpeg,png|max:2048']
+            );
+            $filename = $request->nama.'.'.$request->foto->extension();
+            $request->foto->move(public_path('images'),$filename);
+        }
+        else {
+            $filename = '';
+        }
         //proses input data
         //1.tangkap request dari form input
         DB::table('pengarang')->insert(
@@ -46,7 +57,8 @@ class PengarangController extends Controller
                 'nama'=>$request->nama,
                 'email'=>$request->email,
                 'hp'=>$request->hp,
-                'foto'=>$request->foto,
+                //'foto'=>$request->foto,
+                'foto'=>$filename,
             ]
         );
         //2.landing page

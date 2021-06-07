@@ -2,16 +2,28 @@
 @section('content')
 
     <br/>
-    <div class="jumbotron">
-        @foreach ($ar_pengarang as $p)
-            
-        
-        <h1 class="display-3">{{ $p->nama }}</h1>
-        <p class="lead">
+    @foreach ($ar_pengarang as $p)
+    <div class="card" style="width: 18rem;">
+        @php
+            if (!empty($p->foto)) {
+        @endphp
+            <img src="{{ asset('images')}}/{{ $p->foto }}" width="80%" class="card-img-top"/>
+        @php
+            }else {
+        @endphp
+            <img src="{{ asset('images')}}/nophoto.png" width="80%" class="card-img-top"/>
+        @php
+            }
+        @endphp
+        <div class="card-body">
+          <h5 class="card-title">{{ $p->nama }}</h5>
+          <p class="card-text">
             Email : {{ $p->email}}
             <br/>HP : {{ $p->hp }}
-        </p>
-        @endforeach
+          </p>
+          <a href="{{ url('/pengarang') }}" class="btn btn-primary">Go Back</a>
+        </div>
     </div>
+    @endforeach
     
 @endsection
