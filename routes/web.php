@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengarangController;
+use App\Http\Controllers\PenerbitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,6 +45,15 @@ Route::get('/nilai', function () {
 Route::get('/daftarnilai', function () {
     return view('daftar_nilai');
 
-Route::resource('/pengarang', PengarangController::class);
+// Route::resource('/pengarang', PengarangController::class);
 
+Route::get(
+    '/pengarang',
+    [PengarangController::class, 'index']
+);
+
+Route::get(
+    '/penerbit',
+    [PenerbitController::class, 'index']
+);
 });

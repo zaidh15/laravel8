@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pengarang extends Model
 {
     use HasFactory;
-
+    //mapping table
     protected $table = 'pengarang';
 }

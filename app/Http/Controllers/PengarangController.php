@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 //tambahan
 use DB;
 use App\Models\Pengarang;
@@ -28,7 +27,7 @@ class PengarangController extends Controller
      */
     public function create()
     {
-        //mengarahkan ke hal form
+        //mengarahkan ke halaman form input
         return view('pengarang.form');
     }
 
@@ -40,8 +39,8 @@ class PengarangController extends Controller
      */
     public function store(Request $request)
     {
-        //proses input datanya
-        //1. tangkap request
+        //proses input data
+        //1.tangkap request dari form input
         DB::table('pengarang')->insert(
             [
                 'nama'=>$request->nama,
@@ -50,7 +49,7 @@ class PengarangController extends Controller
                 'foto'=>$request->foto,
             ]
         );
-        //2. landing page
+        //2.landing page
         return redirect('/pengarang');
     }
 
@@ -62,9 +61,9 @@ class PengarangController extends Controller
      */
     public function show($id)
     {
-        //menampilkan detail barang
+        //menampilkan detail pengarang
         $ar_pengarang = DB::table('pengarang')
-                        ->where('id','=',$id)->get();
+                        ->where('id', '=', $id)->get();
         return view('pengarang.show',compact('ar_pengarang'));
     }
 
@@ -76,9 +75,9 @@ class PengarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        //mengarahkan ke halaman form edit
         $data = DB::table('pengarang')
-                ->where('id','=', $id)->get();
+                        ->where('id', '=', $id)->get();
         return view('pengarang.form_edit',compact('data'));
     }
 
@@ -91,17 +90,18 @@ class PengarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //proses edit data
-        DB::table('pengarang')->where('id','=',$id)->update(
+        //proses edit data lama
+        DB::table('pengarang')->where('id', '=', $id)->update(
             [
-                'nama'->$request->nama,
-                'email'->$request->email,
-                'hp'->$request->hp,
-                'foto'->$request->foto,
+                'nama'=>$request->nama,
+                'email'=>$request->email,
+                'hp'=>$request->hp,
+                'foto'=>$request->foto,
             ]
         );
-        //2. landing page
+        //2.landing page
         return redirect('/pengarang'.'/'.$id);
+
     }
 
     /**
@@ -113,7 +113,7 @@ class PengarangController extends Controller
     public function destroy($id)
     {
         //menghapus data
-        DB::table('pengarang')->where('id',$id)->delete();
+        DB::table('pengarang')->where('id', $id)->delete();
         return redirect('/pengarang');
     }
 }

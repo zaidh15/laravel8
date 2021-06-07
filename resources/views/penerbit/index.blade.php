@@ -1,7 +1,7 @@
 @extends('layouts.index')
 @section('content')
 @php
-    $ar_judul = ['No','Nama','Email','HP','Foto', 'Action'];
+    $ar_judul = ['No','Nama','Alamat','Email','Website', 'Telp', 'CP'];
     $no = 1;
 @endphp
 <h3>Daftar Pengarang</h3>
@@ -19,15 +19,17 @@
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{ $p->nama }}</td>
+            <td>{{ $p->alamat }}</td>
             <td>{{ $p->email }}</td>
-            <td>{{ $p->hp }}</td>
-            <td>{{ $p->foto }}</td>
+            <td>{{ $p->website }}</td>
+            <td>{{ $p->telp }}</td>
+            <td>{{ $p->cp }}</td>
             <td>
-            <form method="POST" action="{{ route('pengarang.destroy', $p->id) }}">
+            <form method="POST" action="{{ route('penerbit.destroy', $p->id) }}">
                 @csrf
                 @method('delete')
-                <a class="btn btn-info" href="{{ route('pengarang.show', $p->id) }}">Detail</a>
-                <a class="btn btn-success" href="{{ route('pengarang.edit', $p->id) }}">Edit</a>
+                <a class="btn btn-info" href="{{ route('penerbit.show', $p->id) }}">Detail</a>
+                <a class="btn btn-success" href="{{ route('penerbit.edit', $p->id) }}">Edit</a>
                 <button type="submit" class="btn btn-danger" onclick="return confirm('Anda Yakin Data dihapus?')">Hapus</button>
             </form>
             </td>
