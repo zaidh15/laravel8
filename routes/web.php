@@ -46,20 +46,21 @@ Route::get('/nilai', function () {
 Route::get('/daftarnilai', function () {
     return view('daftar_nilai');
 
-// Route::resource('/pengarang', PengarangController::class);
+    
+Route::resource('/pengarang', PengarangController::class);
 
-Route::get(
-    '/pengarang',
-    [PengarangController::class, 'index']
-);
+// Route::get(
+//     '/pengarang',
+//     [PengarangController::class, 'index']
+// );
 
-Route::get(
-    '/penerbit',
-    [PenerbitController::class, 'index']
-);
+// Route::get(
+//     '/penerbit',
+//     [PenerbitController::class, 'index']
+// );
 
-Route::get(
-    '/buku',
-    [BukuController::class, 'index']
-);
+// Route::get(
+//     '/buku',
+//     [BukuController::class, 'index']
+// );
 });

@@ -9,10 +9,10 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{{url('img/1.jpg')}}" class="d-block w-100" alt="...">
+                <img src="{{url('images/1.jpg')}}" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="{{url('img/2.jpg')}}" class="d-block w-100" alt="..." style="width: 100px">
+                <img src="{{url('images/2.jpg')}}" class="d-block w-100" alt="..." style="width: 100px">
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
