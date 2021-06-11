@@ -9,7 +9,8 @@
         @endphp
             <img src="{{ asset('images')}}/{{ $p->foto }}" width="80%" class="card-img-top"/>
         @php
-            }else {
+            }
+            else {
         @endphp
             <img src="{{ asset('images')}}/nophoto.png" width="80%" class="card-img-top"/>
         @php

@@ -25,6 +25,19 @@
             <td>{{ $b->nama }}</td>
             <td>{{ $b->pen }}</td>
             <td>{{ $b->kat }}</td>
+            <td>
+                @php
+                    if (!empty($b->cover)) {
+                @endphp
+                    <img src="{{ asset('images')}}/{{ $b->cover }}" width="80%"/>
+                @php
+                }else {
+                @endphp
+                    <img src="{{ asset('images')}}/nophoto.png" width="80%"/>
+                @php
+                }
+                @endphp
+            </td>
             
             <td>
             <form method="POST" action="{{ route('buku.destroy', $b->id) }}">

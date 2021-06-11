@@ -43,6 +43,17 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
+        //input upload foto
+        if (!empty($request->cover)) {
+            $request->validate(
+                ['cover'=>'image|mimes:jpg,jpeg,png|max:2048']
+            );
+            $filename = $request->nama.'.'.$request->cover->extension();
+            $request->cover->move(public_path('images'),$filename);
+        }
+        else {
+            $filename = '';
+        }
         //proses input data
         //1.tangkap request dari form input
         DB::table('buku')->insert(
@@ -54,7 +65,7 @@ class BukuController extends Controller
                 'idpengarang'=>$request->idpengarang,
                 'idpenerbit'=>$request->idpenerbit,
                 'idkategori'=>$request->idkategori,
-                //'cover'=>$request->cover,
+                'cover'=>$filename,
             ]
         );
         //2.landing page
@@ -75,7 +86,7 @@ class BukuController extends Controller
             ->join('penerbit', 'penerbit.id', '=', 'buku.idpenerbit')
             ->join('kategori', 'kategori.id', '=', 'buku.idkategori')
             ->select('buku.*', 'pengarang.nama', 'penerbit.nama as pen',
-                'kategori.nama as kat')
+                'kategori.nama as kat', 'buku.cover')
                 ->where('buku.id', '=', $id)->get();
         return view('buku.show',compact('ar_buku'));
     }
@@ -113,7 +124,7 @@ class BukuController extends Controller
                 'idpengarang'=>$request->idpengarang,
                 'idpenerbit'=>$request->idpenerbit,
                 'idkategori'=>$request->idkategori,
-                //'cover'=>$request->cover,
+                'cover'=>$request->cover,
             ]
         );
         //2.landing page

@@ -6,7 +6,7 @@
     $rs3 = App\Models\Kategori::all();
 @endphp
     <h3>Form Buku</h3>
-    <form action="{{ route('buku.store') }}" method="POST">
+    <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="">ISBN</label>
@@ -47,6 +47,10 @@
             @foreach ($rs3 as $k)
                 <input type="radio" name="idkategori" value="{{ $k->id }}"/>{{ $k->nama }} &nbsp;
             @endforeach
+        </div>
+        <div class="form-group">
+            <label for="">Cover</label>
+            <input type="file" name="stok" class="form-control"/>
         </div>
         <button type="submit" class="btn btn-primary" name="proses">Simpan</button>
         <button type="reset" class="btn btn-warning" name="unproses">Batal</button>
