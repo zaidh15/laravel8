@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PengarangController;
 use App\Http\Controllers\PenerbitController;
 use App\Http\Controllers\BukuController;
+use App\Http\Controllers\AnggotaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +49,8 @@ Route::get('/daftarnilai', function () {
 
     
 Route::resource('/pengarang', PengarangController::class);
+Route::resource('/buku', BukuController::class);
+Route::resource('/anggota', AnggotaController::class);
 
 // Route::get(
 //     '/pengarang',

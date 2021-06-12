@@ -6,51 +6,100 @@
     $rs3 = App\Models\Kategori::all();
 @endphp
     <h3>Form Buku</h3>
+    @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($error->all() as $error)
+                <li> {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form action="{{ route('buku.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="">ISBN</label>
-            <input type="text" name="isbn" class="form-control"/>
+            <input type="text" name="isbn" value="{{ old('isbn') }}" class="form-control" @error('isbn') is-invalid @enderror/>
+            @error('isbn')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Judul</label>
-            <input type="text" name="judul" class="form-control"/>
+            <input type="text" name="judul" value="{{ old('judul') }}" class="form-control @error('judul') is-invalid @enderror"/>
+            @error('judul')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Tahun Cetak</label>
-            <input type="text" name="tahun_cetak" class="form-control"/>
+            <input type="text" name="tahun_cetak" value="{{ old('tahun_cetak') }}" class="form-control @error('tahun_cetak') is-invalid @enderror"/>
+            @error('tahun_cetak')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Stok</label>
-            <input type="text" name="stok" class="form-control"/>
+            <input type="text" name="stok" value="{{ old('stok') }}" class="form-control @error('stok') is-invalid @enderror"/>
+            @error('stok')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Pengarang</label>
-            <select class="form-control" name="idpengarang">
+            <select class="form-control @error('idpengarang') is-invalid @enderror" name="idpengarang">
               <option value="">--Pilih Pengarang--</option>
               @foreach ($rs1 as $p)
                 <option value="{{ $p->id }}">{{ $p->nama }}</option>
               @endforeach
             </select>
+            @error('idpengarang')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="exampleFormControlSelect1">Penerbit</label>
-            <select class="form-control" name="idpenerbit">
+            <select class="form-control @error('idpenerbit') is-invalid @enderror" name="idpenerbit">
               <option value="">--Pilih Penerbit--</option>
               @foreach ($rs2 as $pen)
                 <option value="{{ $pen->id }}">{{ $pen->nama }}</option>
               @endforeach
             </select>
+            @error('idpenerbit')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label>Kategori</label> <br/>
             @foreach ($rs3 as $k)
-                <input type="radio" name="idkategori" value="{{ $k->id }}"/>{{ $k->nama }} &nbsp;
+                <input type="radio" class="form-control @error('idkategori') is-invalid @enderror" name="idkategori" value="{{ $k->id }}"/>{{ $k->nama }} &nbsp;
             @endforeach
+            @error('idkategori')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <div class="form-group">
             <label for="">Cover</label>
-            <input type="file" name="stok" class="form-control"/>
+            <input type="file" name="stok" value="{{ old('cover') }}" class="form-control @error('stok') is-invalid @enderror"/>
+            @error('cover')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary" name="proses">Simpan</button>
         <button type="reset" class="btn btn-warning" name="unproses">Batal</button>

@@ -43,6 +43,34 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
+        //proses validasi data
+        $validasi = $request->validate(
+            [
+                'isbn'=>'required|unique:buku|max:100',
+                'judul'=>'required',
+                'tahun_cetak'=>'required|numeric',
+                'stok'=>'required|numeric',
+                'idpengarang'=>'required|numeric',
+                'idpenerbit'=>'required|numeric',
+                'idkategori'=>'required|numeric',
+                'cover'=>'image|mimes:jpg,jpeg,png|max:2048',
+            ],
+
+            [
+                'isbn.required'=>'ISBN Wajib diisi',
+                'isbn.unique'=>'ISBN tidak boleh sama',
+                'judul.required'=>'Judul buku Wajib di isi',
+                'tahun_cetak.required'=>'Tahun Cetak Wajib di isi',
+                'tahun_cetak.numeric'=>'Tahun Cetak harus berupa angka',
+                'stok.required'=>'Stok Wajib di isi',
+                'stok.numeric'=>'Stok harus berupa angka',
+                'idpengarang.required'=>'Pengarang Wajib di isi',
+                'idpenerbit.required'=>'Penerbit Wajib di isi',
+                'idkategori.required'=>'Kategori Wajib di isi',
+                'cover.image'=>'Ekstensi file harus berupa jpg, jpeg,png',
+                'cover.max'=>'Ukuran file tidak boleh melebih dari 2048kB',
+            ]
+        );
         //input upload foto
         if (!empty($request->cover)) {
             $request->validate(
