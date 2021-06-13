@@ -19,7 +19,7 @@
         @csrf
         <div class="form-group">
             <label for="">ISBN</label>
-            <input type="text" name="isbn" value="{{ old('isbn') }}" class="form-control" @error('isbn') is-invalid @enderror/>
+            <input type="text" name="isbn" value="{{ old('isbn') }}" class="form-control @error('isbn') is-invalid @enderror"/>
             @error('isbn')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -84,7 +84,7 @@
         <div class="form-group">
             <label>Kategori</label> <br/>
             @foreach ($rs3 as $k)
-                <input type="radio" class="form-control @error('idkategori') is-invalid @enderror" name="idkategori" value="{{ $k->id }}"/>{{ $k->nama }} &nbsp;
+                <input type="radio" class="form-control @error('idkategori') is-invalid @enderror" name="idkategori" value="{{ $k->id }}"/> {{ $k->nama }} &nbsp;
             @endforeach
             @error('idkategori')
                 <div class="invalid-feedback">
@@ -94,7 +94,7 @@
         </div>
         <div class="form-group">
             <label for="">Cover</label>
-            <input type="file" name="stok" value="{{ old('cover') }}" class="form-control @error('stok') is-invalid @enderror"/>
+            <input type="file" name="stok" value="{{ old('cover') }}" class="form-control @error('cover') is-invalid @enderror"/>
             @error('cover')
                 <div class="invalid-feedback">
                     {{ $message }}

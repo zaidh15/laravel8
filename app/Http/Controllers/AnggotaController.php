@@ -40,6 +40,23 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
+        //validasi 
+        $validasi = $request->validate(
+            [
+                'nama'=>'required|unique:buku|max:100',
+                'email'=>'max:45',
+                'hp'=>'max:15',
+                'cover'=>'image|mimes:jpg,jpeg,png|max:2048',
+            ],
+
+            [
+                'nama.required'=>'Nama wajib di isi',
+                'nama.unique'=>'Nama tidak boleh sama',
+                'foto.image'=>'Ekstensi file harus berupa jpg, jpeg,png',
+                'foto.max'=>'Ukuran file tidak boleh melebih dari 2048kB',
+            ]
+        );
+        
         //input upload foto
         if (!empty($request->foto)) {
             $request->validate(
