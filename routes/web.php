@@ -51,6 +51,8 @@ Route::get('/daftarnilai', function () {
 Route::resource('/pengarang', PengarangController::class);
 Route::resource('/buku', BukuController::class);
 Route::resource('/anggota', AnggotaController::class);
+Route::get('generate-pdf', [BukuController::class, 'generatePDF']);
+Route::get('bukupdf', [BukuController::class, 'bukuPDF']);
 
 // Route::get(
 //     '/pengarang',

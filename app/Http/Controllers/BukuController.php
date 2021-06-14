@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\Buku;
+use PDF;
 
 class BukuController extends Controller
 {
@@ -24,6 +25,21 @@ class BukuController extends Controller
             ->get();
         return view('buku.index', compact('ar_buku'));
     }
+
+    public function bukuPDF()
+    {
+        $ar_buku = DB::table('buku')
+            ->join('pengarang', 'pengarang.id', '=', 'buku.idpengarang')
+            ->join('penerbit', 'penerbit.id', '=', 'buku.idpenerbit')
+            ->join('kategori', 'kategori.id', '=', 'buku.idkategori')
+            ->select('buku.*', 'pengarang.nama', 'penerbit.nama as pen',
+                'kategori.nama as kat')
+            ->get();
+            $pdf = PDF::loadView('buku.daftarBuku', ['ar_buku'=>$ar_buku]);
+    
+            return $pdf->download('daftarBuku.pdf');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -171,5 +187,16 @@ class BukuController extends Controller
         //menghapus data
         DB::table('buku')->where('id', $id)->delete();
         return redirect('/buku');
+    }
+    public function generatePDF()
+    {
+        $data = [
+            'title' => 'Welcome to Ext Generate PDF',
+            'date' => date('m/d/Y')
+        ];
+          
+        $pdf = PDF::loadView('buku.myPDF', $data);
+    
+        return $pdf->download('tesPDF.pdf');
     }
 }
